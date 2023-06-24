@@ -1,0 +1,23 @@
+/*can bit banging file source file*/
+
+
+
+void canInit()
+{
+	
+}
+
+void canRead()
+{
+	
+}
+
+void canWrite()
+{
+	
+}
+
+void canIsr()
+{
+	
+}

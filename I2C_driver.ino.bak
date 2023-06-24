@@ -38,19 +38,28 @@ uint8_t TWI_Read(bool ack) {
     return TWDR;
 }
 
-void i2cInit()
+void i2cInit(i2cHandle_t i2cHandle)
 {
-	
+	TWI_Init();
 }
 
-void i2cWrite()
+void i2cWrite(uint8_t data,uint8_t regAddress)
 {
-	
+	    TWI_Start();
+
+        // Write slave address with write bit
+        TWI_Write((TWI_SLAVE_ADDRESS << 1) | 0);
+
+        // Write data byte
+        TWI_Write(0x42);
+
+        // Stop TWI (I2C) communication
+        TWI_Stop();
 }
 
-uint8_t i2cRead()
+uint8_t i2cRead(uint8_t regAddress)
 {
-	
+	return TWI_Read(1);
 }
 
 int main() {
@@ -63,16 +72,7 @@ int main() {
     // Main loop
     while (1) {
         // Start TWI (I2C) communication
-        TWI_Start();
-
-        // Write slave address with write bit
-        TWI_Write((TWI_SLAVE_ADDRESS << 1) | 0);
-
-        // Write data byte
-        TWI_Write(0x42);
-
-        // Stop TWI (I2C) communication
-        TWI_Stop();
+        
 
         // Delay between each iteration
         _delay_ms(1000);

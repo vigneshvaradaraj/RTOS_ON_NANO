@@ -46,10 +46,7 @@ void uartRead(uint8_t* data)
 	*data = UDR0;
 }
 
-void uartWrite(uint8_t data)
+void uartWrite(void)
 {
-	// Wait for the transmit buffer to be empty
-	while (!(UCSR0A & (1 << UDRE0)));
-	UDR0 = data;
-	
+	//needs to be impi
 }
